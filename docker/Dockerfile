@@ -79,5 +79,6 @@ RUN chown disco $(echo $model_path | tr -d '"')
 
 USER disco
 ADD start.sh /start.sh
+ADD workermode.sh /workermode.sh
 RUN mkdir -p ${mp}/hub/checkpoints/ && cp ${mp}/vgg16-397923af.pth ${mp}/hub/checkpoints/vgg16-397923af.pth || true
 CMD [ "/start.sh" ]

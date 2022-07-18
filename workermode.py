@@ -44,33 +44,6 @@ def loop(args=None):
             ViTL14_336 = False
             RN101 = False
 
-            # Legacy preset model modes:
-            if model_mode == "default":
-                ViTB16 = True
-                ViTB32 = True
-                RN50 = True
-
-            if model_mode == "vitl14":
-                ViTB16 = True
-                ViTB32 = True
-                ViTL14 = True
-
-            if model_mode == "vitl14_336":
-                ViTB16 = True
-                ViTB32 = True
-                ViTL14_336 = True
-
-            if model_mode == "rn50x64":
-                ViTB16 = True
-                ViTB32 = True
-                RN50x64 = True
-
-            if model_mode == "ludicrous":
-                ViTB16 = True
-                ViTB32 = True
-                RN50x64 = True
-                ViTL14_336 = True
-
             if model_mode == "custom":
                 try:
                     ViTB16 = model_mode = results["clip_models"]["ViTB16"]
