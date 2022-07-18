@@ -134,7 +134,7 @@ def bot_loop(args, folders, frame_num, clip_models, init_scale, skip_steps, seco
             my_model = "custom"
 
             bot_config = {
-                "bot_version": 2.3,
+                "bot_version": 2.4,
                 "idle_time": idle_time,
                 "model": my_model,
                 "clip_models": json.dumps(
