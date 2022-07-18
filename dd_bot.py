@@ -342,7 +342,7 @@ def bot_loop(args, folders, frame_num, clip_models, init_scale, skip_steps, seco
         except TerminateException as e:
             logger.info("🔃 Terminate signal.")
             run = False
-            return "🔃 Received Terminate signal."
+            sys.exit(1)
         except CancelException as e:
             logger.info("🔃 Abandon signal.")
         except Exception as e:

@@ -1776,7 +1776,9 @@ def disco(args, folders, frame_num, clip_models, init_scale, skip_steps, seconda
             paletteFile = None
             if args.voronoi_palette not in [None, "None", "none", "NONE", ""]:
                 paletteFile = f"{folders.root_path}/palettes/{args.voronoi_palette}"
-            init = voronoi_utils.render(width=args.side_x, height=args.side_y, num_points=args.voronoi_points, palette_config=paletteFile, voronoi_palette_embed=args.voronoi_palette_embed).convert("RGB")
+            init = voronoi_utils.render(
+                width=args.side_x, height=args.side_y, num_points=args.voronoi_points, palette_config=paletteFile, voronoi_palette_embed=args.voronoi_palette_embed
+            ).convert("RGB")
             init = init.resize((args.side_x, args.side_y), resample=Image.LANCZOS)
             init = TF.to_tensor(init).to(device).unsqueeze(0).mul(2).sub(1)
         if args.init_generator == "perlin":

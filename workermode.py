@@ -1,4 +1,4 @@
-import math
+import math, sys
 from pkgutil import extend_path
 import subprocess
 from time import sleep
@@ -10,6 +10,14 @@ import os
 from dotenv import load_dotenv
 import time
 import traceback
+
+# Set base project directory to current working directory
+PROJECT_DIR = os.path.abspath(os.getcwd())
+
+# Import DD helper modules
+sys.path.append(PROJECT_DIR)
+
+from dd_bot import TerminateException
 
 
 def loop(args=None):
@@ -63,10 +71,15 @@ def loop(args=None):
             try:
                 s = time.time()
                 logger.info(job)
-                log = subprocess.run(job.split(" "), stdout=subprocess.PIPE).stdout.decode("utf-8")
+                log = subprocess.run(job.split(" "), stdout=subprocess.PIPE)  # .stdout.decode("utf-8")
                 e = time.time()
                 duration = e - s
-                logger.info(f"Duration: {duration}")
+                logger.info(f"Bot Run Duration: {duration}")
+                logger.info(f"Bot Run Return Code: {log.returncode}")
+                if int(log.returncode) == 1:
+                    logger.info("Terminating workermode")
+                    run = False
+                    sys.exit(0)
             except KeyboardInterrupt:
                 logger.info("Exiting...")
                 run = False
