@@ -16,6 +16,11 @@ class RestartException(Exception):
         self.error = error
 
 
+class TerminateException(Exception):
+    def __init__(self, error):
+        self.error = error
+
+
 class CancelException(Exception):
     def __init__(self, error):
         self.error = error
@@ -60,6 +65,11 @@ def get_instructions(instructions_url, args):
                 logger.info("🔃 Restarting...")
                 ack_instructions(instructions_url, ins)
                 raise RestartException(ins)
+            # Terminate
+            if command == "terminate":
+                logger.info("🔃 Terminating...")
+                ack_instructions(instructions_url, ins)
+                raise TerminateException(ins)
             # Abandon Job
             if command == "abandon":
                 logger.info("🔃 Abandoning job...")
@@ -124,7 +134,7 @@ def bot_loop(args, folders, frame_num, clip_models, init_scale, skip_steps, seco
             my_model = "custom"
 
             bot_config = {
-                "bot_version": 2.2,
+                "bot_version": 2.3,
                 "idle_time": idle_time,
                 "model": my_model,
                 "clip_models": json.dumps(
@@ -329,6 +339,10 @@ def bot_loop(args, folders, frame_num, clip_models, init_scale, skip_steps, seco
             logger.info("🔃 Received Restart signal.")
             run = False
             return "🔃 Received Restart signal."
+        except TerminateException as e:
+            logger.info("🔃 Terminate signal.")
+            run = False
+            return "🔃 Received Terminate signal."
         except CancelException as e:
             logger.info("🔃 Abandon signal.")
         except Exception as e:
