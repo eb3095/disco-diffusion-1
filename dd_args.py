@@ -134,8 +134,9 @@ def parse(a=None):
             "PulpSciFiDiffusion",
             "256x256_openai_comics_faces_by_alex_spirin_084000",
             "lsun_uncond_100M_1200K_bs128",
-            "ukiyoe_diffusion_256_022000.pt",
+            "ukiyoe_diffusion_256_022000",
             "liminal_diffusion",
+            "portrait_generator_v001_ema_0.9999_1MM",
         ],
     )
     parser.add_argument("--use_secondary_model", help="Use RN101 model", type=str2bool, default=gp("use_secondary_model", True))

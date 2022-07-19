@@ -13,7 +13,7 @@ RUN pip install wget loguru pydotted ipywidgets && \
 
 RUN wget https://raw.githubusercontent.com/entmike/disco-diffusion-1/main/downloadModels2.py && \
     mkdir models && \
-    python downloadModels2.py && \
+    python downloadModels2.py && \ 
     mv models/* /models/
 
 CMD [ "/bin/bash" ]

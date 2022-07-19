@@ -110,6 +110,11 @@ def loadModels2(folders=pydot({"model_path": "models"})):
             "hash": "3d133497672c345f50dec98ebc674bb74c14b4f3aa0f3088f7cefe7e05a10a60",
             "sources": [{"url": "https://github.com/mlfoundations/open_clip/releases/download/v0.2-weights/vit_l_14-laion400m_e32-3d133497.pt"}],
         },
+        {
+            "file": f"{folders.model_path}/portrait_generator_v001_ema_0.9999_1MM.pt",
+            "hash": "b7e8c747af880d4480b6707006f1ace000b058dd0eac5bb13558ba3752d9b5b9",
+            "sources": [{"url": "https://huggingface.co/felipe3dartist/portrait_generator_v001/resolve/main/portrait_generator_v001_ema_0.9999_1MM.pt"}],
+        },
     ]
 
     modelProgress = widgets.IntProgress(

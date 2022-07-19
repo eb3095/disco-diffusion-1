@@ -1149,6 +1149,26 @@ def prepModels(args=None):
                 "use_scale_shift_norm": False,
             }
         )
+    if args.diffusion_model == "portrait_generator_v001_ema_0.9999_1MM":
+        model_config.update(
+            {
+                "attention_resolutions": "32, 16, 8",
+                "class_cond": False,
+                "diffusion_steps": 1000,
+                "rescale_timesteps": True,
+                "image_size": 512,
+                "learn_sigma": True,
+                "noise_schedule": "linear",
+                "num_channels": 128,
+                "num_heads": 4,
+                "num_res_blocks": 2,
+                "resblock_updown": True,
+                "use_checkpoint": args.use_checkpoint,
+                "use_fp16": not args.useCPU,
+                "use_scale_shift_norm": True,
+            }
+        )
+
     # Credit
     if args.diffusion_model == "lsun_uncond_100M_1200K_bs128":
         model_config.update(
