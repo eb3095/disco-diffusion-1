@@ -1602,7 +1602,7 @@ def disco(args, folders, frame_num, clip_models, init_scale, skip_steps, seconda
     model_config.update({"timestep_respacing": timestep_respacing, "diffusion_steps": diffusion_steps})
     model, diffusion = create_model_and_diffusion(**model_config)
     extension = ".pt"
-    if diffusion_model == "sd-v1-3-full-ema":
+    if args.diffusion_model == "sd-v1-3-full-ema":
         extension = ".ckpt"
     model.load_state_dict(torch.load(f"{args.model_path}/{args.diffusion_model}{extension}", map_location="cpu"))
     model.requires_grad_(False).eval().to(device)
