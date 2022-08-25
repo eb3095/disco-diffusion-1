@@ -65,9 +65,6 @@ except:
     logger.warning("Pytorch 3D not present.  Animations will not work.")
 
 
-from ldm.util import instantiate_from_config
-
-
 from clip import clip
 import open_clip
 from ipywidgets import Output
