@@ -65,6 +65,9 @@ except:
     logger.warning("Pytorch 3D not present.  Animations will not work.")
 
 
+from ldm.util import instantiate_from_config
+
+
 from clip import clip
 import open_clip
 from ipywidgets import Output
@@ -1601,10 +1604,12 @@ def disco(args, folders, frame_num, clip_models, init_scale, skip_steps, seconda
     model_config = prepModels(args)
     model_config.update({"timestep_respacing": timestep_respacing, "diffusion_steps": diffusion_steps})
     model, diffusion = create_model_and_diffusion(**model_config)
-    loaded = torch.load(f"{args.model_path}/{args.diffusion_model}.pt", map_location="cpu")
+    sd = torch.load(f"{args.model_path}/{args.diffusion_model}.pt", map_location="cpu")
+    strict = True
     if args.diffusion_model == "sd-v1-3-full-ema":
-        loaded = loaded["state_dict"]
-    model.load_state_dict(loaded)
+        sd = loaded["state_dict"]
+        strict = False
+    model.load_state_dict(sd, strict=strict)
     model.requires_grad_(False).eval().to(device)
     for name, param in model.named_parameters():
         if "qkv" in name or "norm" in name or "proj" in name:
