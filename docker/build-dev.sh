@@ -1,1 +1,1 @@
-docker build -t entmike-disco-diffusion-1:dev --build-arg BRANCH=dev .
+docker build -t eb3095/disco-diffusion-1:dev --build-arg BRANCH=dev .
