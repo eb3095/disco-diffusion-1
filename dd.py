@@ -1090,14 +1090,9 @@ def prepModels(args=None):
                 "use_checkpoint": args.use_checkpoint,
                 "use_fp16": not args.useCPU,
                 "use_scale_shift_norm": True,
-                "context_dim": 1280,
-                "transformer_depth": 1,
-                "use_spatial_transformer": True,
                 "num_channels": 320,
                 "num_head_channels": 8,
                 "channel_mult": "1, 2, 4, 4",
-                "out_channels": 4,
-                "in_channels": 4,
             }
         )
     # Update Model Settings
