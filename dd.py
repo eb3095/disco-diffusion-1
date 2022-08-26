@@ -1611,7 +1611,7 @@ def disco(args, folders, frame_num, clip_models, init_scale, skip_steps, seconda
     model, diffusion = create_model_and_diffusion(**model_config)
     sd = torch.load(f"{args.model_path}/{args.diffusion_model}.pt", map_location="cpu")
     strict = True
-    if args.diffusion_model.startswith("sd-):
+    if args.diffusion_model.startswith("sd-"):
         sd = sd["state_dict"]
         strict = False
     model.load_state_dict(sd, strict=strict)
