@@ -1604,7 +1604,7 @@ def disco(args, folders, frame_num, clip_models, init_scale, skip_steps, seconda
     sd = torch.load(f"{args.model_path}/{args.diffusion_model}.pt", map_location="cpu")
     strict = True
     if args.diffusion_model == "sd-v1-3-full-ema":
-        sd = loaded["state_dict"]
+        sd = sd["state_dict"]
         strict = False
     model.load_state_dict(sd, strict=strict)
     model.requires_grad_(False).eval().to(device)
