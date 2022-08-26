@@ -1092,11 +1092,11 @@ def prepModels(args=None):
                 "use_scale_shift_norm": True,
                 "legacy": False,
                 "context_dim": 1280,
-                "transformer_depth": 1
+                "transformer_depth": 1,
                 "use_spatial_transformer": True,
                 "model_channels": 320,
                 "num_heads": 8,
-                "channel_mult": "1, 2, 4, 4"
+                "channel_mult": "1, 2, 4, 4",
                 "num_res_blocks": 2,
                 "out_channels": 4,
                 "in_channels": 4,
