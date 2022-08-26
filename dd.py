@@ -1074,10 +1074,10 @@ def prepModels(args=None):
     logger.info("Prepping models...")
     model_config = model_and_diffusion_defaults()
     # Update Model Settings
-    if args.diffusion_model == "sd-v1-3-full-ema":
+    if args.diffusion_model == "sd-v1-4-full-ema":
         model_config.update(
             {
-                "attention_resolutions": "32, 16, 8",
+                "attention_resolutions": "4, 2, 1",
                 "class_cond": False,
                 "diffusion_steps": 1000,  # No need to edit this, it is taken care of later.
                 "rescale_timesteps": True,
@@ -1085,13 +1085,21 @@ def prepModels(args=None):
                 "image_size": 512,
                 "learn_sigma": True,
                 "noise_schedule": "linear",
-                "num_channels": 256,
-                "num_head_channels": 64,
                 "num_res_blocks": 2,
                 "resblock_updown": True,
                 "use_checkpoint": args.use_checkpoint,
                 "use_fp16": not args.useCPU,
                 "use_scale_shift_norm": True,
+                "legacy": False,
+                "context_dim": 1280,
+                "transformer_depth": 1
+                "use_spatial_transformer": True,
+                "model_channels": 320,
+                "num_heads": 8,
+                "channel_mult": "1, 2, 4, 4"
+                "num_res_blocks": 2,
+                "out_channels": 4,
+                "in_channels": 4,
             }
         )
     # Update Model Settings
@@ -1603,7 +1611,7 @@ def disco(args, folders, frame_num, clip_models, init_scale, skip_steps, seconda
     model, diffusion = create_model_and_diffusion(**model_config)
     sd = torch.load(f"{args.model_path}/{args.diffusion_model}.pt", map_location="cpu")
     strict = True
-    if args.diffusion_model == "sd-v1-3-full-ema":
+    if args.diffusion_model.startswith("sd-):
         sd = sd["state_dict"]
         strict = False
     model.load_state_dict(sd, strict=strict)

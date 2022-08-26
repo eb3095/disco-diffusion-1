@@ -133,6 +133,11 @@ def loadModels(folders=pydot({"model_path": "models"})):
             "hash": "8fb26589b9a8bab2e7a683d280e48df89b8e742f3a82132707282620b36facba",
             "sources": [{"url": "https://github.com/mlfoundations/open_clip/releases/download/v0.2-weights/vit_b_16_plus_240-laion400m_e31-8fb26589.pt"}],
         },
+        {
+            "file": f"{folders.model_path}/sd-v1-4-full-ema.pt",
+            "hash": "14749efc0ae8ef0329391ad4436feb781b402f4fece4883c7ad8d10556d8a36a",
+            "sources": [{"url": "https://huggingface.co/CompVis/stable-diffusion-v-1-4-original/resolve/main/sd-v1-4-full-ema.ckpt"}],
+        },
     ]
 
     modelProgress = widgets.IntProgress(

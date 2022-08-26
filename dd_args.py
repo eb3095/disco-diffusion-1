@@ -122,7 +122,7 @@ def parse(a=None):
         help="Diffusion Model",
         default=gp("diffusion_model", "512x512_diffusion_uncond_finetune_008100"),
         choices=[
-            "sd-v1-3-full-ema",
+            "sd-v1-4-full-ema",
             "512x512_diffusion_uncond_finetune_008100",
             "256x256_diffusion_uncond",
             "pixel_art_diffusion_hard_256",
